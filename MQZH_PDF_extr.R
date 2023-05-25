@@ -111,3 +111,22 @@ df <- data.frame(
 colnames(df)[1] <- str_extract(pdf_text[1], "^[^,]+,?")
 df <- df[-1, ]
 
+
+library(tidyr)
+
+tidy_df <- df %>%
+  pivot_longer(cols = c(Value, Unit, `proz.Abweichung`, Deviation), 
+               names_to = "Variable", 
+               values_to = "Value") %>%
+  filter(!is.na(Value))
+
+library(tidyr)
+
+df_tidy <- df %>% 
+  gather(key = "Variable", value = "Measurement", -Name) %>% 
+  separate(Variable, into = c("Metric", "Qualifier"), sep = "\\.", extra = "merge") %>% 
+  spread(key = Qualifier, value = Measurement)
+
+df_tidy
+
+
