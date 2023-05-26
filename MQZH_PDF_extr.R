@@ -1,4 +1,5 @@
 library(stringr)
+library(pdftools)
 
 pdf_text <- pdf_text("mq_20223_04669.pdf") |> str_split("\n")
 pdf_text <- pdf_text[-2]
