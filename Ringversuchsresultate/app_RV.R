@@ -29,13 +29,28 @@ read_multiple_extqm_csv("c:/R_local/RoundRobinR", "4669_", "qmzh.data")
 # shinyapp -------------------------------------------------------------
 # Define UI
 ui <- fluidPage(
-  sidebarLayout(
-    sidebarPanel(
-      selectInput("substanz_input", "Bitte wähle Ringversuch:", 
+       navbarPage(
+        title = div(img(src="logo_pos.png",  
+                    height = 28, 
+                    width = 130, 
+                    style = "margin:1px 3px", "  Klinische Chemie ")
+    ), 
+    theme = shinytheme("paper"), 
+    collapsible = TRUE,
+    fluid = TRUE,
+    
+    # Taxpunktumsatz tabPanel  ------------------------------------------------
+    
+    tabPanel("Ringversuchsergebnisse", "TDM",
+          sidebarLayout(
+            sidebarPanel(
+              selectInput("substanz_input", "Bitte wähle Ringversuch:", 
                   choices = unique(qmzh.data$substanz))
     ),
     mainPanel(
       plotOutput("boxplot")
+              )
+      )
     )
   )
 )
