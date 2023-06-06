@@ -1,4 +1,5 @@
 library(shiny)
+library(shinythemes)
 library(ggplot2)
 library(plotly)
 library(tidyverse)
@@ -39,9 +40,9 @@ ui <- fluidPage(
     collapsible = TRUE,
     fluid = TRUE,
     
-    # Taxpunktumsatz tabPanel  ------------------------------------------------
+# Ringversuchsergebnisse tabPanel  ------------------------------------------------
     
-    tabPanel("Ringversuchsergebnisse", "TDM",
+    tabPanel("Ringversuchsergebnisse", strong("TDM", align = "center"),
           sidebarLayout(
             sidebarPanel(
               selectInput("substanz_input", "Bitte wähle Ringversuch:", 
